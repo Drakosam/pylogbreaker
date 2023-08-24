@@ -4,19 +4,6 @@ import QtQuick.Controls
 
 Item {
 
-
-    ListModel {
-        id: buttonModel
-        ListElement {
-            name: "  Load File  "
-        }
-        ListElement {
-            name: "name1"
-        }
-        ListElement {
-            name: "name2"
-        }
-    }
     Rectangle {
         anchors.fill: parent
         color: "#4a4a4a"
@@ -24,7 +11,7 @@ Item {
 
         ListView {
             anchors.fill: parent
-            model: buttonModel
+            model: fileModel
             orientation: ListView.Horizontal
             layoutDirection: Qt.LeftToRight
 
@@ -33,7 +20,7 @@ Item {
                 height: rectangle.height
 
                 onClicked: {
-                    console.log(name)
+                    console.log(name, isStatic)
                 }
             }
         }
