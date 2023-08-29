@@ -36,3 +36,8 @@ class FileModel(QAbstractListModel):
         self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
         self._items.append(FileItem(name, is_static))
         self.endInsertRows()
+
+    def clear(self):
+        self.beginResetModel()
+        self._items = []
+        self.endResetModel()

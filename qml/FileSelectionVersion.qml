@@ -21,7 +21,12 @@ Item {
 
                 onClicked: {
                     console.log(name, isStatic)
-                    backendApp.addVersion()
+                    if(isStatic){
+                        backendApp.addVersion()
+                    }else {
+
+                    }
+
                 }
             }
         }

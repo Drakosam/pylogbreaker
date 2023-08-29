@@ -1,10 +1,11 @@
 from PySide6.QtCore import QObject, Slot
 from PySide6.QtQml import QmlElement
+from backend import fileManager
 
 
 class BackendApp(QObject):
 
-    def __int__(self):
+    def __init__(self):
         super().__init__()
         self.file_version = None
 
@@ -17,4 +18,12 @@ class BackendApp(QObject):
 
     @Slot()
     def addVersion(self):
-        self.file_version.add_file("ver 1")
+        fileManager.add_version_for_file()
+
+    @Slot(str)
+    def openFileProc(self, path):
+        fileManager.add_file_to_list(path)
+
+    @Slot(str)
+    def selectFile(self, file_name):
+        fileManager.select_file(file_name)

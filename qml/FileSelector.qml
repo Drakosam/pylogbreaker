@@ -1,8 +1,15 @@
 import QtQuick 2.0
 import QtQuick.Layouts
 import QtQuick.Controls
+import QtQuick.Dialogs
 
 Item {
+    FileDialog{
+        id: fileDialogObj
+        onAccepted:{
+            backendApp.openFileProc(selectedFile)
+        }
+    }
 
     Rectangle {
         anchors.fill: parent
@@ -20,7 +27,11 @@ Item {
                 height: rectangle.height
 
                 onClicked: {
-                    console.log(name, isStatic)
+                    if(isStatic){
+                        fileDialogObj.open()
+                    }else{
+                        backendApp.selectFile(name)
+                    }
                 }
             }
         }
