@@ -32,7 +32,6 @@ class LogItemList(QAbstractListModel):
 
     def add_line(self, text: str):
         self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
-        print('add line :: ', text)
         self._items.append(LogItem(text))
         self.endInsertRows()
 
