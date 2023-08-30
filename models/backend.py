@@ -27,3 +27,7 @@ class BackendApp(QObject):
     @Slot(str)
     def selectFile(self, file_name):
         fileManager.select_file(file_name)
+
+    @Slot(int)
+    def setLogDisplayArea(self, log_area):
+        fileManager.recalculate_log_display_size(log_area)

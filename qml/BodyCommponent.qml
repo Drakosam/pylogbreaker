@@ -8,6 +8,10 @@ Item{
         color: "#4a4a4a"
         id: rectangle
 
+        onHeightChanged: {
+            backendApp.setLogDisplayArea(rectangle.height)
+        }
+
         ListView {
             anchors.fill: parent
             model: logItemList
