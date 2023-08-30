@@ -10,6 +10,7 @@ from models.backend import BackendApp
 from models.filemodel import FileModel
 
 from backend import fileManager
+from models.logItemList import LogItemList
 
 CURRENT_DIRECTORY = Path(__file__).resolve().parent
 
@@ -20,23 +21,28 @@ if __name__ == '__main__':
     file_model = FileModel()
     file_version_model = FileModel()
     backend = BackendApp()
+    log_item_list = LogItemList()
 
     fileManager.set_file_list(file_model)
     fileManager.set_file_version_list(file_version_model)
+    fileManager.set_show_log_lines(log_item_list)
 
-    file_model.add_file(" Add File ",True)
-    file_version_model.add_file("+",True)
+    file_model.add_file(" Add File ", True)
+    file_version_model.add_file("+", True)
 
     engine.rootContext().setContextProperty("fileModel", file_model)
+    engine.rootContext().setContextProperty("logItemList", log_item_list)
     engine.rootContext().setContextProperty("fileVersionModel", file_version_model)
     engine.rootContext().setContextProperty("backendApp", backend)
 
     filename = os.fspath(CURRENT_DIRECTORY / "qml/main.qml")
     url = QUrl.fromLocalFile(filename)
 
+
     def handle_object_created(obj: QObject | None, obj_url: QUrl) -> None:
         if obj is None and url == obj_url:
             QCoreApplication.exit(-1)
+
 
     engine.objectCreated.connect(handle_object_created, Qt.QueuedConnection)
 
