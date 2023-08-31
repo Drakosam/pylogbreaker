@@ -8,26 +8,11 @@ Item{
         color: "#4a4a4a"
         id: rectangle
 
-        onHeightChanged: {
-            backendApp.setLogDisplayArea(rectangle.height)
+        LogLinesAreaCommponent{
+            id: logLinesAreaCommponent
+            height: parent.height - 200
+            width: parent.width
         }
 
-        ListView {
-            anchors.fill: parent
-            model: logItemList
-
-            delegate: Button {
-                id: buttonId1
-                contentItem: Text {
-                    text: model.name
-                    color: "#ffffff"
-                    font.pixelSize: 20
-                    anchors.centerIn: parent
-                    horizontalAlignment: Text.AlignLeft
-                }
-                width: rectangle.width
-                height: 35
-            }
-        }
     }
 }

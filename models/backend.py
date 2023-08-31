@@ -31,3 +31,7 @@ class BackendApp(QObject):
     @Slot(int)
     def setLogDisplayArea(self, log_area):
         fileManager.recalculate_log_display_size(log_area)
+
+    @Slot(int)
+    def swichPage(self,direction):
+        fileManager.swich_page(direction)
